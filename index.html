@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Análise de Valor Agregado</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: #0f172a;
+      color: #e2e8f0;
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 20px 10%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      color: #38bdf8;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #cbd5f5;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: #38bdf8;
+    }
+
+    .hero {
+      padding: 100px 10%;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #94a3b8;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      padding: 12px 25px;
+      border-radius: 8px;
+      text-decoration: none;
+      margin: 5px;
+      display: inline-block;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: #38bdf8;
+      color: #0f172a;
+    }
+
+    .btn-primary:hover {
+      background: #0ea5e9;
+    }
+
+    .btn-secondary {
+      border: 1px solid #38bdf8;
+      color: #38bdf8;
+    }
+
+    section {
+      padding: 80px 10%;
+    }
+
+    .section-title {
+      font-size: 30px;
+      margin-bottom: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 12px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: #38bdf8;
+    }
+
+    .video {
+      text-align: center;
+    }
+
+    .video iframe {
+      width: 100%;
+      max-width: 800px;
+      height: 450px;
+      border-radius: 10px;
+    }
+
+    .download {
+      text-align: center;
+    }
+
+    .report-box {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      background: #020617;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Valor Agregado</h1>
+  <nav>
+    <a href="#funciona">Como funciona</a>
+    <a href="#beneficios">Benefícios</a>
+    <a href="#download">Download</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>Análise de Valor Agregado por Voz</h2>
+  <p>Transforme falas em dados inteligentes e gere relatórios automaticamente em segundos.</p>
+
+  <a href="https://drive.google.com/file/d/1YdINZXo0RhRwZ-aMbvfKU_v3GNRK3cNA/view?usp=sharing" target="_blank" class="btn btn-primary">⬇ Baixar App</a>
+  <a href="#video" class="btn btn-secondary">▶ Assistir Demonstração</a>
+</section>
+
+<section>
+  <h2 class="section-title">O que o app faz</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Análise por voz</h3>
+      <p>Capture atividades em tempo real apenas falando.</p>
+    </div>
+    <div class="card">
+      <h3>Classificação automática</h3>
+      <p>Identifica VA, NVA e atividades incidentais automaticamente.</p>
+    </div>
+    <div class="card">
+      <h3>Relatórios inteligentes</h3>
+      <p>Geração de PDF e CSV com gráficos e indicadores.</p>
+    </div>
+    <div class="card">
+      <h3>Tempo produtivo</h3>
+      <p>Visualize exatamente onde está o valor no processo.</p>
+    </div>
+  </div>
+</section>
+
+<section id="funciona">
+  <h2 class="section-title">Como funciona</h2>
+  <div class="grid">
+    <div class="card"><h3>1. Abra o app</h3></div>
+    <div class="card"><h3>2. Inicie a gravação</h3></div>
+    <div class="card"><h3>3. Fale atividades</h3></div>
+    <div class="card"><h3>4. Receba o relatório</h3></div>
+  </div>
+</section>
+
+<section id="video" class="video">
+  <h2 class="section-title">Demonstração</h2>
+
+  <iframe src="https://www.youtube.com/embed/WB0qdyR15y8" frameborder="0" allowfullscreen></iframe>
+</section>
+
+<section id="beneficios">
+  <h2 class="section-title">Benefícios</h2>
+  <div class="grid">
+    <div class="card"><h3>Mais rápido</h3></div>
+    <div class="card"><h3>Mais preciso</h3></div>
+    <div class="card"><h3>Sem papel</h3></div>
+    <div class="card"><h3>Automatizado</h3></div>
+    <div class="card"><h3>Fácil de usar</h3></div>
+  </div>
+</section>
+
+<section id="download" class="download">
+  <h2 class="section-title">Baixar o aplicativo</h2>
+
+  <p>Comece agora a analisar processos com inteligência.</p>
+
+  <a href="https://drive.google.com/file/d/1YdINZXo0RhRwZ-aMbvfKU_v3GNRK3cNA/view?usp=sharing" target="_blank" class="btn btn-primary">📱 Download Android</a>
+  <p style="margin-top:15px;">
+    Versão 1.0 • 50MB • Atualizado em Abril 2026
+  </p>
+</section>
+
+<section>
+  <h2 class="section-title">Exemplo de relatório</h2>
+
+  <div class="report-box">
+    <p>Gráfico de distribuição VA / NVA</p>
+    <p>Lista de atividades classificadas</p>
+    <p>Tempo total produtivo</p>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">Ajude a melhorar o app</h2>
+
+  <p>Envie novas palavras-chave e contribua com a evolução da inteligência do sistema.</p>
+
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLScocS4FzNeDIjBQeYgJg9LzecnIpKpxRuCk593HgxKX3iYhrg/viewform?usp=sharing&ouid=111879279441749442554" target="_blank" class="btn btn-primary">Responder formulário</a>
+</section>
+
+<section class="download">
+  <h2 class="section-title">Comece agora</h2>
+
+  <a href="https://drive.google.com/file/d/1YdINZXo0RhRwZ-aMbvfKU_v3GNRK3cNA/view?usp=sharing" target="_blank" class="btn btn-primary">⬇ Baixar App</a>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLScocS4FzNeDIjBQeYgJg9LzecnIpKpxRuCk593HgxKX3iYhrg/viewform?usp=sharing&ouid=111879279441749442554" target="_blank" class="btn btn-secondary">📋 Enviar sugestões</a>
+</section>
+
+<footer>
+  <p>© 2026 - Vitor Gabriel | Valor Agregado</p>
+</footer>
+
+</body>
+</html>
