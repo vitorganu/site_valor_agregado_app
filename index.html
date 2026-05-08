@@ -1,259 +1,566 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Análise de Valor Agregado</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Value Analysis AI</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
     }
 
-    body {
-      background: #0f172a;
-      color: #e2e8f0;
-      line-height: 1.6;
+    body{
+      font-family:'Inter',sans-serif;
+      background:#0f172a;
+      color:white;
+      overflow-x:hidden;
     }
 
-    header {
-      padding: 20px 10%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    section{
+      padding:90px 8%;
     }
 
-    header h1 {
-      color: #38bdf8;
+    h1,h2,h3{
+      line-height:1.2;
     }
 
-    nav a {
-      margin-left: 20px;
-      text-decoration: none;
-      color: #cbd5f5;
-      font-weight: 500;
+    p{
+      color:#cbd5e1;
+      line-height:1.7;
     }
 
-    nav a:hover {
-      color: #38bdf8;
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      background:
+      radial-gradient(circle at top left,#2563eb44,transparent 30%),
+      radial-gradient(circle at bottom right,#7c3aed55,transparent 30%),
+      #0f172a;
+      position:relative;
+      overflow:hidden;
     }
 
-    .hero {
-      padding: 100px 10%;
-      text-align: center;
+    .hero::before{
+      content:'';
+      position:absolute;
+      width:500px;
+      height:500px;
+      background:#2563eb33;
+      border-radius:50%;
+      filter:blur(120px);
+      top:-150px;
+      left:-150px;
     }
 
-    .hero h2 {
-      font-size: 40px;
-      margin-bottom: 20px;
+    .hero-content{
+      max-width:900px;
+      z-index:2;
+      animation:fadeUp 1s ease;
     }
 
-    .hero p {
-      font-size: 18px;
-      color: #94a3b8;
-      margin-bottom: 30px;
+    .hero h1{
+      font-size:clamp(2.5rem,6vw,5rem);
+      font-weight:700;
+      margin-bottom:20px;
     }
 
-    .btn {
-      padding: 12px 25px;
-      border-radius: 8px;
-      text-decoration: none;
-      margin: 5px;
-      display: inline-block;
-      font-weight: bold;
-      transition: 0.3s;
+    .hero p{
+      font-size:1.2rem;
+      margin-bottom:40px;
     }
 
-    .btn-primary {
-      background: #38bdf8;
-      color: #0f172a;
+    .buttons{
+      display:flex;
+      justify-content:center;
+      gap:16px;
+      flex-wrap:wrap;
     }
 
-    .btn-primary:hover {
-      background: #0ea5e9;
+    .btn{
+      padding:16px 28px;
+      border-radius:14px;
+      border:none;
+      text-decoration:none;
+      font-weight:600;
+      transition:0.3s;
+      cursor:pointer;
+      display:inline-block;
     }
 
-    .btn-secondary {
-      border: 1px solid #38bdf8;
-      color: #38bdf8;
+    .btn-primary{
+      background:#2563eb;
+      color:white;
     }
 
-    section {
-      padding: 80px 10%;
+    .btn-primary:hover{
+      transform:translateY(-4px);
+      background:#1d4ed8;
+      box-shadow:0 10px 25px rgba(37,99,235,.4);
     }
 
-    .section-title {
-      font-size: 30px;
-      margin-bottom: 20px;
+    .btn-secondary{
+      background:#1e293b;
+      color:white;
+      border:1px solid #334155;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+    .btn-secondary:hover{
+      transform:translateY(-4px);
+      background:#334155;
     }
 
-    .card {
-      background: #1e293b;
-      padding: 20px;
-      border-radius: 12px;
+    .section-title{
+      text-align:center;
+      font-size:2.5rem;
+      margin-bottom:20px;
     }
 
-    .card h3 {
-      margin-bottom: 10px;
-      color: #38bdf8;
+    .section-subtitle{
+      text-align:center;
+      max-width:700px;
+      margin:auto;
+      margin-bottom:60px;
     }
 
-    .video {
-      text-align: center;
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:25px;
     }
 
-    .video iframe {
-      width: 100%;
-      max-width: 800px;
-      height: 450px;
-      border-radius: 10px;
+    .card{
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:24px;
+      padding:30px;
+      backdrop-filter:blur(12px);
+      transition:0.4s;
+      opacity:0;
+      transform:translateY(40px);
     }
 
-    .download {
-      text-align: center;
+    .card.show{
+      opacity:1;
+      transform:translateY(0);
     }
 
-    .report-box {
-      background: #1e293b;
-      padding: 20px;
-      border-radius: 12px;
-      text-align: center;
-      margin-top: 20px;
+    .card:hover{
+      transform:translateY(-8px) scale(1.02);
+      border-color:#2563eb;
+      box-shadow:0 15px 40px rgba(37,99,235,.2);
     }
 
-    footer {
-      text-align: center;
-      padding: 40px;
-      background: #020617;
-      margin-top: 50px;
+    .card h3{
+      margin-bottom:15px;
+      font-size:1.3rem;
+    }
+
+    .steps{
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+      max-width:800px;
+      margin:auto;
+    }
+
+    .step{
+      display:flex;
+      gap:20px;
+      align-items:flex-start;
+      background:rgba(255,255,255,0.04);
+      padding:24px;
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,0.08);
+      transition:0.4s;
+      opacity:0;
+      transform:translateX(-40px);
+    }
+
+    .step.show{
+      opacity:1;
+      transform:translateX(0);
+    }
+
+    .step:hover{
+      border-color:#2563eb;
+      transform:translateX(6px);
+    }
+
+    .number{
+      min-width:45px;
+      height:45px;
+      border-radius:50%;
+      background:#2563eb;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:bold;
+    }
+
+    iframe{
+      width:100%;
+      border:none;
+      border-radius:20px;
+      min-height:450px;
+    }
+
+    .download-box{
+      text-align:center;
+      background:linear-gradient(135deg,#1e293b,#0f172a);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:30px;
+      padding:50px;
+    }
+
+    .info{
+      margin-top:20px;
+      color:#94a3b8;
+    }
+
+    footer{
+      padding:50px 8%;
+      text-align:center;
+      border-top:1px solid rgba(255,255,255,0.08);
+    }
+
+    .contact{
+      margin-top:25px;
+    }
+
+    .contact a{
+      color:#60a5fa;
+      text-decoration:none;
+    }
+
+    .contact a:hover{
+      text-decoration:underline;
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(40px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @media(max-width:768px){
+
+      section{
+        padding:70px 6%;
+      }
+
+      .hero{
+        padding-top:80px;
+      }
+
+      .hero p{
+        font-size:1rem;
+      }
+
+      iframe{
+        min-height:250px;
+      }
+
+      .download-box{
+        padding:35px 25px;
+      }
     }
   </style>
 </head>
-
 <body>
 
-<header>
-  <h1>Valor Agregado</h1>
-  <nav>
-    <a href="#funciona">Como funciona</a>
-    <a href="#beneficios">Benefícios</a>
-    <a href="#download">Download</a>
-  </nav>
-</header>
+  <!-- HERO -->
+  <section class="hero">
 
-<section class="hero">
-  <h2>Análise de Valor Agregado por Voz</h2>
-  <p>Transforme falas em dados inteligentes e gere relatórios automaticamente em segundos.</p>
+    <div class="hero-content">
+      <h1>Value Analysis AI</h1>
 
-  <a href="https://drive.google.com/file/d/1YdINZXo0RhRwZ-aMbvfKU_v3GNRK3cNA/view?usp=sharing" target="_blank" class="btn btn-primary">⬇ Baixar App</a>
-  <a href="#video" class="btn btn-secondary">▶ Assistir Demonstração</a>
-</section>
+      <p>
+        Faça análise de valor agregado por voz, classifique atividades automaticamente
+        e gere relatórios inteligentes em poucos segundos.
+      </p>
 
-<section>
-  <h2 class="section-title">O que o app faz</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Análise por voz</h3>
-      <p>Capture atividades em tempo real apenas falando.</p>
+      <div class="buttons">
+        <a class="btn btn-primary"
+          href="https://drive.google.com/file/d/1YdINZXo0RhRwZ-aMbvfKU_v3GNRK3cNA/view?usp=sharing"
+          target="_blank">
+          Baixar Aplicativo
+        </a>
+
+        <a class="btn btn-secondary" href="#funciona">
+          Ver como funciona
+        </a>
+
+        <a class="btn btn-secondary"
+          href="https://youtu.be/WB0qdyR15y8"
+          target="_blank">
+          Assistir Vídeo
+        </a>
+      </div>
     </div>
-    <div class="card">
-      <h3>Classificação automática</h3>
-      <p>Identifica VA, NVA e atividades incidentais automaticamente.</p>
+
+  </section>
+
+  <!-- O QUE FAZ -->
+  <section>
+
+    <h2 class="section-title">O que o aplicativo faz?</h2>
+
+    <p class="section-subtitle">
+      O sistema utiliza reconhecimento por voz e classificação inteligente
+      para identificar automaticamente atividades com valor agregado,
+      sem valor agregado e atividades incidentais.
+    </p>
+
+    <div class="grid">
+
+      <div class="card reveal">
+        <h3>🎤 Análise por Voz</h3>
+        <p>
+          Grave atividades em tempo real utilizando reconhecimento de voz.
+        </p>
+      </div>
+
+      <div class="card reveal">
+        <h3>🧠 Classificação Inteligente</h3>
+        <p>
+          O sistema identifica automaticamente VA, NVA e atividades incidentais.
+        </p>
+      </div>
+
+      <div class="card reveal">
+        <h3>📊 Relatórios Automáticos</h3>
+        <p>
+          Gere gráficos e relatórios automaticamente ao finalizar a análise.
+        </p>
+      </div>
+
+      <div class="card reveal">
+        <h3>⏱️ Indicadores de Tempo</h3>
+        <p>
+          Descubra quanto tempo realmente agrega valor ao processo.
+        </p>
+      </div>
+
     </div>
-    <div class="card">
-      <h3>Relatórios inteligentes</h3>
-      <p>Geração de PDF e CSV com gráficos e indicadores.</p>
+
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section id="funciona">
+
+    <h2 class="section-title">Como funciona</h2>
+
+    <div class="steps">
+
+      <div class="step reveal-step">
+        <div class="number">1</div>
+        <div>
+          <h3>Abra o aplicativo</h3>
+          <p>Inicie uma nova análise diretamente pelo celular.</p>
+        </div>
+      </div>
+
+      <div class="step reveal-step">
+        <div class="number">2</div>
+        <div>
+          <h3>Inicie a gravação</h3>
+          <p>O sistema começará a capturar as atividades por voz.</p>
+        </div>
+      </div>
+
+      <div class="step reveal-step">
+        <div class="number">3</div>
+        <div>
+          <h3>Fale as atividades</h3>
+          <p>O app identifica automaticamente palavras-chave e classifica as tarefas.</p>
+        </div>
+      </div>
+
+      <div class="step reveal-step">
+        <div class="number">4</div>
+        <div>
+          <h3>Receba o relatório</h3>
+          <p>Visualize gráficos, tempos e exporte em PDF ou CSV.</p>
+        </div>
+      </div>
+
     </div>
-    <div class="card">
-      <h3>Tempo produtivo</h3>
-      <p>Visualize exatamente onde está o valor no processo.</p>
-    </div>
-  </div>
-</section>
 
-<section id="funciona">
-  <h2 class="section-title">Como funciona</h2>
-  <div class="grid">
-    <div class="card"><h3>1. Abra o app</h3></div>
-    <div class="card"><h3>2. Inicie a gravação</h3></div>
-    <div class="card"><h3>3. Fale atividades</h3></div>
-    <div class="card"><h3>4. Receba o relatório</h3></div>
-  </div>
-</section>
+  </section>
 
-<section id="video" class="video">
-  <h2 class="section-title">Demonstração</h2>
+  <!-- VIDEO -->
+  <section>
 
-  <iframe src="https://www.youtube.com/embed/WB0qdyR15y8" frameborder="0" allowfullscreen></iframe>
-</section>
+    <h2 class="section-title">Vídeo Demonstrativo</h2>
 
-<section id="beneficios">
-  <h2 class="section-title">Benefícios</h2>
-  <div class="grid">
-    <div class="card"><h3>Mais rápido</h3></div>
-    <div class="card"><h3>Mais preciso</h3></div>
-    <div class="card"><h3>Sem papel</h3></div>
-    <div class="card"><h3>Automatizado</h3></div>
-    <div class="card"><h3>Fácil de usar</h3></div>
-  </div>
-</section>
-
-<section id="download" class="download">
-  <h2 class="section-title">Baixar o aplicativo</h2>
-
-  <p>Comece agora a analisar processos com inteligência.</p>
-
-  <a href="https://drive.google.com/file/d/1YdINZXo0RhRwZ-aMbvfKU_v3GNRK3cNA/view?usp=sharing" target="_blank" class="btn btn-primary">📱 Download Android</a>
-  <p style="margin-top:15px;">
-    Versão 1.0 • 50MB • Atualizado em Abril 2026
-  </p>
-</section>
-
-<section id="relatorio">
-  <h2 class="section-title">Exemplo de relatório</h2>
-
-  <p>Veja na prática como o aplicativo gera a análise automaticamente:</p>
-
-  <div style="display:flex; justify-content:center; margin-top:20px;">
-    <iframe 
-      width="300" 
-      height="533"
-      src="https://www.youtube.com/embed/LkTOi_ngcGc" 
-      title="Exemplo de relatório - AVA App"
-      frameborder="0" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    <iframe
+      src="https://www.youtube.com/embed/WB0qdyR15y8"
       allowfullscreen>
     </iframe>
-  </div>
-</section>
 
-<section>
-  <h2 class="section-title">Ajude a melhorar o app</h2>
+  </section>
 
-  <p>Envie novas palavras-chave e contribua com a evolução da inteligência do sistema.</p>
+  <!-- BENEFICIOS -->
+  <section>
 
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLScocS4FzNeDIjBQeYgJg9LzecnIpKpxRuCk593HgxKX3iYhrg/viewform?usp=sharing&ouid=111879279441749442554" target="_blank" class="btn btn-primary">Responder formulário</a>
-</section>
+    <h2 class="section-title">Benefícios</h2>
 
-<section class="download">
-  <h2 class="section-title">Comece agora</h2>
+    <div class="grid">
 
-  <a href="https://drive.google.com/file/d/1YdINZXo0RhRwZ-aMbvfKU_v3GNRK3cNA/view?usp=sharing" target="_blank" class="btn btn-primary">⬇ Baixar App</a>
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLScocS4FzNeDIjBQeYgJg9LzecnIpKpxRuCk593HgxKX3iYhrg/viewform?usp=sharing&ouid=111879279441749442554" target="_blank" class="btn btn-secondary">📋 Enviar sugestões</a>
-</section>
+      <div class="card reveal">
+        <h3>⚡ Mais rápido</h3>
+        <p>Reduza tempo de coleta manual de dados.</p>
+      </div>
 
-<footer>
-  <p>© 2026 - Vitor Gabriel Nunes Cardoso | Valor Agregado</p>
-</footer>
+      <div class="card reveal">
+        <h3>🎯 Mais preciso</h3>
+        <p>Classificação automática reduz erros humanos.</p>
+      </div>
+
+      <div class="card reveal">
+        <h3>📝 Sem anotações manuais</h3>
+        <p>Todo o processo é feito automaticamente por voz.</p>
+      </div>
+
+      <div class="card reveal">
+        <h3>📈 Relatórios automáticos</h3>
+        <p>Exportação rápida em PDF e CSV.</p>
+      </div>
+
+      <div class="card reveal">
+        <h3>📱 Fácil de usar</h3>
+        <p>Interface simples, moderna e intuitiva.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- DOWNLOAD -->
+  <section>
+
+    <div class="download-box">
+
+      <h2 class="section-title">Baixar Aplicativo</h2>
+
+      <p class="section-subtitle">
+        Faça o download do aplicativo e comece agora mesmo suas análises.
+      </p>
+
+      <a class="btn btn-primary"
+        href="https://drive.google.com/file/d/1YdINZXo0RhRwZ-aMbvfKU_v3GNRK3cNA/view?usp=sharing"
+        target="_blank">
+        Download Android (.APK)
+      </a>
+
+      <div class="info">
+        Atualizado: Abril 2026
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- RELATORIO -->
+  <section>
+
+    <h2 class="section-title">Exemplo de Relatório</h2>
+
+    <iframe
+      src="https://www.youtube.com/embed/LkTOi_ngcGc"
+      allowfullscreen>
+    </iframe>
+
+  </section>
+
+  <!-- QUIZ -->
+  <section>
+
+    <h2 class="section-title">Ajude a Melhorar o App</h2>
+
+    <p class="section-subtitle">
+      Sugira novas palavras-chave e contribua para melhorar
+      a inteligência do sistema.
+    </p>
+
+    <div style="text-align:center;">
+      <a class="btn btn-primary"
+        href="https://docs.google.com/forms/d/e/1FAIpQLScocS4FzNeDIjBQeYgJg9LzecnIpKpxRuCk593HgxKX3iYhrg/viewform?usp=sharing&ouid=111879279441749442554"
+        target="_blank">
+        Responder Formulário
+      </a>
+    </div>
+
+  </section>
+
+  <!-- FINAL -->
+  <footer>
+
+    <h2>Comece agora mesmo</h2>
+
+    <p style="margin-top:15px;">
+      Transforme análises manuais em relatórios inteligentes.
+    </p>
+
+    <div class="buttons" style="margin-top:30px;">
+
+      <a class="btn btn-primary"
+        href="https://drive.google.com/file/d/1YdINZXo0RhRwZ-aMbvfKU_v3GNRK3cNA/view?usp=sharing"
+        target="_blank">
+        Baixar App
+      </a>
+
+      <a class="btn btn-secondary"
+        href="https://docs.google.com/forms/d/e/1FAIpQLScocS4FzNeDIjBQeYgJg9LzecnIpKpxRuCk593HgxKX3iYhrg/viewform?usp=sharing&ouid=111879279441749442554"
+        target="_blank">
+        Responder Quiz
+      </a>
+
+    </div>
+
+    <div class="contact">
+      Contato:
+      <a href="mailto:vitorganunes23@gmail.com">
+        vitorganunes23@gmail.com
+      </a>
+    </div>
+
+  </footer>
+
+  <script>
+
+    const reveals = document.querySelectorAll('.reveal');
+    const steps = document.querySelectorAll('.reveal-step');
+
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('show');
+        }
+      });
+    },{
+      threshold:0.2
+    });
+
+    reveals.forEach(el=>observer.observe(el));
+    steps.forEach(el=>observer.observe(el));
+
+  </script>
 
 </body>
 </html>
